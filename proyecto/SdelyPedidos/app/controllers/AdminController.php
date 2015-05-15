@@ -22,7 +22,8 @@ class AdminController extends BaseController {
 		$this->_login = true;
 		$this->_pagina = ' - Login';
 		return View::make('login')->with('pagina', $this->_pagina)
-										->with('login', $this->_login);
+								  ->with('login', $this->_login)
+								  ->with('titulo', 'Acceso usuarios');
 	}
 	
 	public function getLogOut()

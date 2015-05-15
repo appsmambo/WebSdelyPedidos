@@ -71,7 +71,7 @@ App::down(function()
 App::missing(function($exception)
 {
 	$url = Request::url();
-	return Response::view('404', array('url' => $url), 404);
+	return Response::view('404', array('url' => $url, 'titulo' => '404'), 404);
 });
 
 
