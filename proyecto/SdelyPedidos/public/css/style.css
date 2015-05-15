@@ -127,7 +127,7 @@ textarea {
 
 .subnavbar .container > ul {
 	display: inline-block;
-	
+	width:100%;
 	height: 80px;
 	padding: 0;
 	margin: 0;
@@ -252,8 +252,6 @@ textarea {
 
 .main {
 	padding-bottom: 2em;
-	
-	border-bottom: 1px solid #000;
 }
 
 
@@ -308,8 +306,10 @@ textarea {
 
 .footer {
 	margin-top: 0;
-	
+	position:fixed;
+	bottom:0;
 	border-top: 1px solid #292929;
+	width:100%
 }
 
 .footer-inner {

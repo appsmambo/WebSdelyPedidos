@@ -54,7 +54,46 @@
 				</div><!-- /container --> 
 			</div><!-- /navbar-inner --> 
 		</div><!-- /navbar -->
+		
+		<div class="subnavbar">
+			<div class="subnavbar-inner">
+				<div class="container">
+					<ul class="mainnav">
+						<li class="{{ ($menu == 'inicio') ? 'active' : '' }}">
+							<a href="{{url()}}/admin"><i class="icon-dashboard"></i><span>Inicio</span></a>
+						</li>
+						<li class="{{ ($menu == 'pedidos') ? 'active' : '' }}">
+							<a href="{{url()}}/admin/listar-pedidos"><i class="icon-list-alt"></i><span>Ver Pedidos</span></a>
+						</li>
+						<li class="{{ ($menu == 'usuarios') ? 'active' : '' }}">
+							<a href="{{url()}}/admin/usuarios"><i class="icon-group"></i><span>Ver Usuarios</span></a>
+						</li>
+						<li class="{{ ($menu == 'stock') ? 'active' : '' }}">
+							<a href="{{url()}}/admin/importar-datos"><i class="icon-cogs"></i><span>::STOCK::</span></a>
+						</li>
+						<li class="">
+							&nbsp;
+						</li>
+						<li style="float:right">
+							<a href="{{url()}}/admin/salir"><i class="icon-signout"></i><span>salir</span></a>
+						</li>
+					</ul>
+				</div><!-- /container --> 
+			</div><!-- /subnavbar-inner --> 
+		</div><!-- /subnavbar -->
+		
 @yield('contenido')
+
+		<div class="footer">
+			<div class="footer-inner">
+				<div class="container">
+					<div class="row">
+						<div class="span12"> &copy; 2015 <a href="#">mamboKings</a>. </div>
+						<!-- /span12 --> 
+					</div><!-- /row --> 
+				</div><!-- /container --> 
+			</div><!-- /footer-inner --> 
+		</div><!-- /footer --> 
 
 	</body>
 </html>

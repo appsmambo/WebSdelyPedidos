@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2015 a las 01:43:33
+-- Tiempo de generación: 15-05-2015 a las 23:52:14
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -58,6 +58,45 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pedidos`
+--
+
+CREATE TABLE IF NOT EXISTS `pedidos` (
+`id` int(11) NOT NULL,
+  `marca` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `codigo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `color` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `talla` tinyint(4) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(8,2) NOT NULL,
+  `monto` decimal(8,2) NOT NULL,
+  `verificado` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `estado` tinyint(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE IF NOT EXISTS `productos` (
+`id` int(11) NOT NULL,
+  `marca` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `codigo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `color` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `talla` tinyint(4) NOT NULL,
+  `precio` decimal(8,2) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `throttle`
 --
 
@@ -71,7 +110,14 @@ CREATE TABLE IF NOT EXISTS `throttle` (
   `last_attempt_at` timestamp NULL DEFAULT NULL,
   `suspended_at` timestamp NULL DEFAULT NULL,
   `banned_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `throttle`
+--
+
+INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, `banned`, `last_attempt_at`, `suspended_at`, `banned_at`) VALUES
+(1, 1, '::1', 0, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2209,7 +2255,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `dni`, `telefono`, `direccion`, `ubigeo`, `tipo`, `usuario`, `created_at`, `updated_at`) VALUES
-(1, 'quintanilla.peru@gmail.com', '$2y$10$yTmrK/gsuBKbL2ONKe1aeuz0H7JK3ts5Y4L/JiP8mhLna46T9WrHu', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'Administrador', NULL, NULL, NULL, NULL, NULL, 1, 'admin', '2015-05-15 03:20:39', '2015-05-15 03:20:39');
+(1, 'quintanilla.peru@gmail.com', '$2y$10$yTmrK/gsuBKbL2ONKe1aeuz0H7JK3ts5Y4L/JiP8mhLna46T9WrHu', NULL, 1, NULL, NULL, '2015-05-16 00:49:55', '$2y$10$5ME1KgdAfJcpRGma3ftCmOAewt74yiuerjiDR.BCY.jt7m/7X7NHu', NULL, 'Administrador', NULL, NULL, NULL, NULL, NULL, 1, 'admin', '2015-05-15 03:20:39', '2015-05-16 00:49:55');
 
 -- --------------------------------------------------------
 
@@ -2253,6 +2299,18 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 ALTER TABLE `groups`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `groups_name_unique` (`name`);
+
+--
+-- Indices de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `throttle`
@@ -2306,10 +2364,20 @@ ALTER TABLE `usuario`
 ALTER TABLE `groups`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `throttle`
 --
 ALTER TABLE `throttle`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
