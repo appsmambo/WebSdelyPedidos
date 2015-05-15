@@ -4,6 +4,8 @@
 Route::get('/crea-usuario', 'HomeController@creaUsuario');
 
 // inicio de rutas para el admin
+
+// login
 Route::get('/', array('as' => 'login', 'uses' => 'AdminController@getLogin'));
 Route::post('/login', array('uses' => 'AdminController@postLogin'));
 

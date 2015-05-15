@@ -11,10 +11,10 @@
 		<link href="{{url()}}/css/font-awesome.css" rel="stylesheet">
 		<link href="{{url()}}/css/style.css" rel="stylesheet" type="text/css">
 		<link href="{{url()}}/css/pages/signin.css" rel="stylesheet" type="text/css">
-		@yield('estilos')
+@yield('estilos')
 		<script src="{{url()}}/js/jquery-1.7.2.min.js"></script>
 		<script src="{{url()}}/js/bootstrap.js"></script>
-		@yield('scripts')
+@yield('scripts')
 	</head>
 	<body>
 
