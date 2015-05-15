@@ -14,7 +14,8 @@ Route::post('/login', array('uses' => 'AdminController@postLogin'));
 Route::group(array('before' => 'auth.admin'), function()
 {
 	Route::get('/admin', array('as' => 'admin.index', 'uses' => 'AdminController@getIndex'));
-	Route::get('/admin/logout', array('as' => 'logout', 'uses' => 'AdminController@getLogOut'));
+	Route::get('/admin/salir', array('as' => 'logout', 'uses' => 'AdminController@getLogOut'));
+	Route::get('/admin/perfil-usuario', array('as' => 'perfil', 'uses' => 'AdminController@getPerfil'));
 	
 	Route::get('/admin/paginas/inicio', array('uses' => 'AdminController@getPaginasInicio'));
 });

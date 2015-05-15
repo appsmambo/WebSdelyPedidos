@@ -8,6 +8,18 @@ class AdminController extends BaseController {
 	public function __construct()
 	{
 		$this->_titulo = 'Acceso usuarios';
+		try
+		{
+			// Get the current active/logged in user
+			$this->_user = Sentry::getUser();
+			View::share('user', $this->_user);
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			// User wasn't found, should only happen if the user was deleted
+			// when they were already logged in or had a "remember me" cookie set
+			// and they were deleted.
+		}
 	}
 
 	public function getLogin()
@@ -85,7 +97,11 @@ class AdminController extends BaseController {
 		return View::make('admin.index')->with('titulo', $this->_titulo);
 	}
 	
-	
+	public function getPerfil()
+	{
+		$this->_titulo = 'Mi perfil - ';
+		return View::make('admin.perfil')->with('titulo', $this->_titulo);
+	}
 	
 	public function getPaginasInicio()
 	{
