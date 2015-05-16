@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2015 a las 23:52:14
+-- Tiempo de generación: 16-05-2015 a las 10:25:47
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -63,12 +63,17 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 
 CREATE TABLE IF NOT EXISTS `pedidos` (
 `id` int(11) NOT NULL,
+  `sku` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `catalogo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `pagina` smallint(6) NOT NULL,
   `marca` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `codigo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `color` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `talla` tinyint(4) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precio` decimal(8,2) NOT NULL,
+  `precio_sugerido` decimal(8,2) NOT NULL,
+  `precio_promotora` decimal(8,2) NOT NULL,
+  `precio_centro` decimal(8,2) NOT NULL,
   `monto` decimal(8,2) NOT NULL,
   `verificado` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -84,11 +89,16 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
 
 CREATE TABLE IF NOT EXISTS `productos` (
 `id` int(11) NOT NULL,
+  `catalogo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `pagina` smallint(6) NOT NULL,
   `marca` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `codigo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `color` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `talla` tinyint(4) NOT NULL,
-  `precio` decimal(8,2) NOT NULL,
+  `precio_sugerido` decimal(8,2) NOT NULL,
+  `precio_promotora` decimal(8,2) NOT NULL,
+  `precio_centro` decimal(8,2) NOT NULL,
+  `sku` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `stock` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
