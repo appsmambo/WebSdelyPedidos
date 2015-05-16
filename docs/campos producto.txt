@@ -1,0 +1,11 @@
+catalogo
+pagina
+marca
+codigo
+color
+talla
+precio sugerido
+pre promotora
+precio centro
+sku  - solo visto por el admin
+cantidad
