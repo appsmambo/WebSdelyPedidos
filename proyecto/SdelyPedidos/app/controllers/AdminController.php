@@ -100,11 +100,21 @@ class AdminController extends BaseController {
 		return View::make('admin.index')->with('titulo', $this->_titulo);
 	}
 	
+	public function  getUsuarios()
+	{
+		$this->_titulo = 'Usuarios - ';
+		$this->_menu = 'usuarios';
+		$users = User::all();
+		return View::make('admin.usuario.listar')->with('titulo', $this->_titulo)
+											->with('menu', $this->_menu)
+											->with('usuarios', $users);
+	}
+
 	public function getPerfil()
 	{
 		$this->_titulo = 'Mi perfil - ';
 		$this->_menu = 'perfil';
-		return View::make('admin.perfil')->with('titulo', $this->_titulo)
+		return View::make('admin.usuario.perfil')->with('titulo', $this->_titulo)
 										->with('menu', $this->_menu);
 	}
 	

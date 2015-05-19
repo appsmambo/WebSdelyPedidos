@@ -81,8 +81,14 @@
 				</div><!-- /container --> 
 			</div><!-- /subnavbar-inner --> 
 		</div><!-- /subnavbar -->
-		
-@yield('contenido')
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="container">
+					@yield('contenido')
+				</div><!-- /container --> 
+			</div><!-- /main-inner --> 
+		</div><!-- /main -->
 
 		<div class="footer">
 			<div class="footer-inner">

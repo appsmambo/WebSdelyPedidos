@@ -1,3 +1,9 @@
+<?php
+/*
+ * Página: Mi perfil
+ */
+?>
+
 @extends('layouts.admin')
 @section('estilos')
 @stop

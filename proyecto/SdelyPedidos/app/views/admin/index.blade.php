@@ -1,3 +1,9 @@
+<?php
+/*
+ * Página inicio del administrador
+ */
+?>
+
 @extends('layouts.admin')
 @section('estilos')
 @stop
@@ -5,9 +11,6 @@
 @stop
 @section('contenido')
 		
-		<div class="main">
-			<div class="main-inner">
-				<div class="container">
 					<div class="row">
 						<div class="span6">
 							<div class="widget widget-nopad">
@@ -51,9 +54,6 @@
 							</div><!-- /widget -->
 						</div><!-- /span6 --> 
 					</div><!-- /row --> 
-				</div><!-- /container --> 
-			</div><!-- /main-inner --> 
-		</div><!-- /main -->
 
 		<script>
 
