@@ -17,8 +17,11 @@ Route::group(array('before' => 'auth.admin'), function()
 	Route::get('/admin/salir', array('as' => 'logout', 'uses' => 'AdminController@getLogOut'));
 	Route::get('/admin/perfil-usuario', array('as' => 'perfil', 'uses' => 'AdminController@getPerfil'));
 	Route::get('/admin/usuarios', array('as' => 'usuarios', 'uses' => 'AdminController@getUsuarios'));
-	Route::get('/admin/listar-pedidos', array('as' => 'pedidos', 'uses' => 'Admincontroller@getPedidos'));
+	Route::get('/admin/listar-pedidos', array('as' => 'pedidos', 'uses' => 'PedidosController@getPedidos'));
 	Route::get('/admin/paginas/inicio', array('uses' => 'AdminController@getPaginasInicio'));
+	
+	Route::get('/admin/importar-datos', array('as' => 'stock', 'uses' => 'ProductosController@getStock'));
+	Route::post('/admin/stock', array('uses' => 'ProductosController@postStock'));
 });
 
 // filtro auth

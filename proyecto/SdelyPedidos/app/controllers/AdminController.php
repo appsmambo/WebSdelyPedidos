@@ -118,28 +118,4 @@ class AdminController extends BaseController {
 										->with('menu', $this->_menu);
 	}
 	
-	public function getPedidos()
-	{
-		$this->_pagina = ' - Editar página INICIO';
-		$paginaInicio = PaginaInicio::find(1);
-		$datos = array();
-		$datos['encabezado'] = explode('|', $paginaInicio->encabezado);
-		$datos['queEs'][] = explode(';', $paginaInicio->que_es_1);
-		$datos['queEs'][] = explode(';', $paginaInicio->que_es_2);
-		$datos['queEs'][] = explode(';', $paginaInicio->que_es_3);
-		$datos['queEs'][] = explode(';', $paginaInicio->que_es_4);
-		$datos['queEs'][] = explode(';', $paginaInicio->que_es_5);
-		$datos['queEs'][] = explode(';', $paginaInicio->que_es_6);
-		$datos['mensaje'][] = $paginaInicio->mensaje;
-		$datos['skills'][] = explode(';', $paginaInicio->skills_1);
-		$datos['skills'][] = explode(';', $paginaInicio->skills_2);
-		$datos['skills'][] = explode(';', $paginaInicio->skills_3);
-		$datos['skills'][] = explode(';', $paginaInicio->skills_4);
-		
-		
-		print_r($datos);exit;
-		return View::make('admin.pagina-inicio')->with('pagina', $this->_pagina)
-												->with('datos', $datos);
-	}
-
 }
