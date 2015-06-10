@@ -28,8 +28,8 @@
 							<th> Usuario </th>
 							<th> Tipo </th>
 							<th class="td-actions">
-								<button class="btn btn-info pull-right">Buscar</button>
-								<button class="btn btn-success pull-right">Nuevo</button>
+								<a href="#" class="btn btn-info pull-right">Buscar</a>
+								<a href="{{url()}}/admin/usuarios/nuevo" class="btn btn-success pull-right">Nuevo</a>
 							</th>
 						</tr>
 					</thead>

@@ -2254,7 +2254,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `telefono` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `direccion` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ubigeo` int(11) DEFAULT NULL,
-  `tipo` tinyint(4) DEFAULT NULL COMMENT '1:Administrador | 2:Centro Distribucion',
+  `tipo` tinyint(4) DEFAULT NULL COMMENT '1:Administrador | 2:Centro Distribucion | 3:Promotora',
   `usuario` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'

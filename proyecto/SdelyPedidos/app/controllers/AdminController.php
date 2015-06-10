@@ -5,11 +5,21 @@ class AdminController extends BaseController {
 	private $_titulo = null;
 	private $_user = null;
 	private $_menu = null;
+	private $_messages = null;
 	
 	public function __construct()
 	{
 		$this->_titulo = 'Acceso usuarios';
 		$this->_menu = 'inicio';
+		$this->_messages = array(
+			'required'		=> 'Es obligatorio.',
+			'email'			=> 'Ingrese su cuenta de email.',
+			'string'		=> 'Solo se permite letras.',
+			'digits'		=> 'Solo se permite números.',
+			'dni.unique'	=> 'El dni ingresado ya está registrado en el sistema.',
+			'email.unique'	=> 'El email ingresado ya está registrado en el sistema.',
+			'codigo.unique' => 'El código ingresado ya está registrado en el sistema.'
+		);
 		try
 		{
 			// Get the current active/logged in user
@@ -100,7 +110,7 @@ class AdminController extends BaseController {
 		return View::make('admin.index')->with('titulo', $this->_titulo);
 	}
 	
-	public function  getUsuarios()
+	public function getUsuarios()
 	{
 		$this->_titulo = 'Usuarios - ';
 		$this->_menu = 'usuarios';
@@ -108,6 +118,57 @@ class AdminController extends BaseController {
 		return View::make('admin.usuario.listar')->with('titulo', $this->_titulo)
 											->with('menu', $this->_menu)
 											->with('usuarios', $users);
+	}
+	
+	public function getUsuariosNuevo()
+	{
+		$this->_titulo = 'Usuarios - ';
+		$this->_menu = 'usuarios';
+		return View::make('admin.usuario.nuevo')->with('titulo', $this->_titulo)
+											->with('menu', $this->_menu);
+	}
+	
+	public function postUsuariosNuevo()
+	{
+		$mensaje = 'Usuario registrado.';
+		try
+		{
+			$user = Sentry::createUser(array(
+				'tipo'			=> Input::get('tipo'),
+				'usuario'		=> trim(Input::get('usuario')),
+				'password'		=> Input::get('password'),
+				'first_name'	=> ucwords(strtolower(trim(Input::get('first_name')))),
+				'last_name'		=> ucwords(strtolower(trim(Input::get('last_name')))),
+				'dni'			=> trim(Input::get('dni')),
+				'email'			=> trim(Input::get('email')),
+				'telefono'		=> trim(Input::get('telefono')),
+				'direccion'		=> trim(Input::get('direccion')),
+				'ubigeo'		=> Input::get('ubigeo'),
+				'activated'		=> true,
+			));
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			$mensaje = 'Login field is required.';
+		}
+		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+		{
+			$mensaje = 'Password field is required.';
+		}
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+			$mensaje = 'User with this login already exists.';
+		}
+		
+		echo $mensaje;exit;
+
+		/*
+			return Redirect::action('AdminController@getUsuariosNuevo', array('messages' => $messages));
+			//return Response::json($respuesta, 200);
+		
+		return Redirect::route('usuariosNuevo', $respuesta);
+*/
+		
 	}
 
 	public function getPerfil()
