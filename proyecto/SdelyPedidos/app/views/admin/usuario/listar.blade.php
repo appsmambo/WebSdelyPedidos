@@ -21,51 +21,66 @@
 				</h3>
 			</div> <!-- /widget-header -->
 			<div class="widget-content">
-				
+@if($mensaje != '')
+				<div class="alert">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Mensaje!</strong> {{$mensaje}}
+				</div>
+@endif
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th> Usuario </th>
 							<th> Tipo </th>
-							<th class="td-actions">
-								<a href="#" class="btn btn-info pull-right">Buscar</a>
-								<a href="{{url()}}/admin/usuarios/nuevo" class="btn btn-success pull-right">Nuevo</a>
-							</th>
+							<th> Email </th>
+							<td>
+								<!--a href="#" class="btn btn-info pull-right">Buscar</a-->
+								<a href="{{url()}}/admin/usuarios/nuevo" class="btn btn-small btn-success">Nuevo Usuario <i class="btn-icon-only icon-plus-sign-alt"> </i></a>
+							</td>
 						</tr>
 					</thead>
 					<tbody>
+@foreach ($usuarios as $user)
 						<tr>
-							<td> CDCHIMBOTE </td>
-							<td> CENTRO </td>
-							<td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+							<td>{{$user->usuario}}</td>
+							<td>
+@if($user->tipo == 1)
+								{{'ADMIN'}}
+@elseif($user->tipo == 2)
+								{{'CENTRO'}}
+@elseif($user->tipo == 3)
+								{{'PROMOTORA'}}
+@endif
+							</td>
+							<td>
+								{{$user->email}}
+							</td>
+							<td class="td-actions">
+@if($user->activated == 1)
+								<a href="{{url()}}/admin/usuarios/editar/{{$user->id}}" class="btn btn-small btn-info">Editar <i class="btn-icon-only icon-pencil"> </i></a>
+@endif
+@if($user->tipo != 1)
+@if($user->activated == 1)
+								<a href="#" data-url="/admin/usuarios/bloquear/{{$user->id}}" data-usuario="{{$user->usuario}}" class="eliminarUsuario btn btn-small btn-danger">Bloquear <i class="btn-icon-only icon-thumbs-down"> </i></a>
+@elseif($user->activated == 0)
+								<a href="#" data-url="/admin/usuarios/activar/{{$user->id}}" data-usuario="{{$user->usuario}}" class="activarUsuario btn btn-small btn-warning">Activar <i class="btn-icon-only icon-thumbs-up"> </i></a>
+@endif
+@endif
+							</td>
 						</tr>
-						<tr>
-							<td> CDHUARAL </td>
-							<td> CENTRO </td>
-							<td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-						</tr>
-						<tr>
-							<td> KAREN RUÍZ GALLO </td>
-							<td> PROMOTORA </td>
-							<td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-						</tr>
-						<tr>
-							<td> CDANTA </td>
-							<td> CENTRO </td>
-							<td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-						</tr>
-						<tr>
-							<td> CDAYACUCHO </td>
-							<td> CENTRO </td>
-							<td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-						</tr>
-						<tr>
-							<td> admin </td>
-							<td> ADMINISTRADOR </td>
-							<td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-						</tr>
-
+@endforeach
 					</tbody>
+					<tfoot>
+						<tr>
+							<th> Usuario </th>
+							<th> Tipo </th>
+							<th> Email </th>
+							<td>
+								<!--a href="#" class="btn btn-info pull-right">Buscar</a-->
+								<a href="{{url()}}/admin/usuarios/nuevo" class="btn btn-small btn-success">Nuevo Usuario <i class="btn-icon-only icon-plus-sign-alt"> </i></a>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 		</div>

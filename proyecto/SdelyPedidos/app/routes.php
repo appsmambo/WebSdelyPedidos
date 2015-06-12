@@ -20,6 +20,10 @@ Route::group(array('before' => 'auth.admin'), function()
 	Route::get('/admin/usuarios', array('as' => 'usuarios', 'uses' => 'AdminController@getUsuarios'));
 	Route::get('/admin/usuarios/nuevo', array('as' => 'usuariosNuevo', 'uses' => 'AdminController@getUsuariosNuevo'));
 	Route::post('/admin/usuarios/nuevo', array('uses' => 'AdminController@postUsuariosNuevo'));
+	Route::get('/admin/usuarios/editar/{id}', array('uses' => 'AdminController@getUsuariosEditar'));
+	Route::post('/admin/usuarios/editar', array('uses' => 'AdminController@postUsuariosEditar'));
+	Route::get('/admin/usuarios/bloquear/{id}', array('uses' => 'AdminController@getUsuariosBloquear'));
+	Route::get('/admin/usuarios/activar/{id}', array('uses' => 'AdminController@getUsuariosActivar'));
 	
 	Route::get('/admin/listar-pedidos', array('as' => 'pedidos', 'uses' => 'PedidosController@getPedidos'));
 	Route::get('/admin/paginas/inicio', array('uses' => 'AdminController@getPaginasInicio'));

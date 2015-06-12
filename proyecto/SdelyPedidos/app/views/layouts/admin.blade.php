@@ -17,11 +17,16 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		<script src="{{url()}}/js/jquery-1.7.2.min.js"></script>
+		<script src="{{url()}}/js/bootbox.min.js"></script>
 		<script src="{{url()}}/js/excanvas.min.js"></script>
 		<script src="{{url()}}/js/chart.min.js"></script>
 		<script src="{{url()}}/js/bootstrap.js"></script>
 		<script src="{{url()}}/js/full-calendar/fullcalendar.min.js"></script>
 		<script src="{{url()}}/js/base.js"></script>
+		<script src="{{url()}}/js/admin.js"></script>
+		<script>
+			var urlBase = '{{url()}}';
+		</script>
 @yield('scripts')
 	</head>
 	<body>

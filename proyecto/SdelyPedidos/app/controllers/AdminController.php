@@ -112,25 +112,29 @@ class AdminController extends BaseController {
 	
 	public function getUsuarios()
 	{
+		$mensaje = Input::get('mensaje', '');
 		$this->_titulo = 'Usuarios - ';
 		$this->_menu = 'usuarios';
-		$users = User::all();
+		$users = Sentry::findAllUsers();
 		return View::make('admin.usuario.listar')->with('titulo', $this->_titulo)
 											->with('menu', $this->_menu)
-											->with('usuarios', $users);
+											->with('usuarios', $users)
+											->with('mensaje', $mensaje);
 	}
 	
 	public function getUsuariosNuevo()
 	{
+		$mensaje = Input::get('mensaje', '');
 		$this->_titulo = 'Usuarios - ';
 		$this->_menu = 'usuarios';
 		return View::make('admin.usuario.nuevo')->with('titulo', $this->_titulo)
-											->with('menu', $this->_menu);
+											->with('menu', $this->_menu)
+											->with('mensaje', $mensaje);
 	}
 	
 	public function postUsuariosNuevo()
 	{
-		$mensaje = 'Usuario registrado.';
+		$mensaje = '';
 		try
 		{
 			$user = Sentry::createUser(array(
@@ -149,26 +153,87 @@ class AdminController extends BaseController {
 		}
 		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
 		{
-			$mensaje = 'Login field is required.';
+			$mensaje = 'Ingrese el usuario.';
 		}
 		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
 		{
-			$mensaje = 'Password field is required.';
+			$mensaje = 'Ingrese el password.';
 		}
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
-			$mensaje = 'User with this login already exists.';
+			$mensaje = 'El usuario '. trim(Input::get('usuario')) .' ya existe.';
 		}
 		
-		echo $mensaje;exit;
-
-		/*
-			return Redirect::action('AdminController@getUsuariosNuevo', array('messages' => $messages));
-			//return Response::json($respuesta, 200);
+		if ($mensaje != '')
+			return Redirect::action('AdminController@getUsuariosNuevo', array('mensaje' => $mensaje));
+		else
+			return Redirect::action('AdminController@getUsuarios', array('mensaje' => 'Usuario registrado.'));
+	}
+	
+	public function getUsuariosEditar($id)
+	{
+		$user = Sentry::findUserById($id);
+		$mensaje = Input::get('mensaje', '');
+		$this->_titulo = 'Usuarios - ';
+		$this->_menu = 'usuarios';
+		return View::make('admin.usuario.editar')->with('titulo', $this->_titulo)
+											->with('menu', $this->_menu)
+											->with('mensaje', $mensaje)
+											->with('usuario', $user);
+	}
+	
+	public function postUsuariosEditar()
+	{
+		$mensaje = '';
+		try
+		{
+			$user = Sentry::createUser(array(
+				'tipo'			=> Input::get('tipo'),
+				'usuario'		=> trim(Input::get('usuario')),
+				'password'		=> Input::get('password'),
+				'first_name'	=> ucwords(strtolower(trim(Input::get('first_name')))),
+				'last_name'		=> ucwords(strtolower(trim(Input::get('last_name')))),
+				'dni'			=> trim(Input::get('dni')),
+				'email'			=> trim(Input::get('email')),
+				'telefono'		=> trim(Input::get('telefono')),
+				'direccion'		=> trim(Input::get('direccion')),
+				'ubigeo'		=> Input::get('ubigeo'),
+				'activated'		=> true,
+			));
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			$mensaje = 'Ingrese el usuario.';
+		}
+		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+		{
+			$mensaje = 'Ingrese el password.';
+		}
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+			$mensaje = 'El usuario '. trim(Input::get('usuario')) .' ya existe.';
+		}
 		
-		return Redirect::route('usuariosNuevo', $respuesta);
-*/
-		
+		if ($mensaje != '')
+			return Redirect::action('AdminController@getUsuariosNuevo', array('mensaje' => $mensaje));
+		else
+			return Redirect::action('AdminController@getUsuarios', array('mensaje' => 'Usuario registrado.'));
+	}
+	
+	public function getUsuariosBloquear($id)
+	{
+		$user = Sentry::findUserById($id);
+		$user->activated = false;
+		$user->save();
+		return Redirect::route('usuarios');
+	}
+	
+	public function getUsuariosActivar($id)
+	{
+		$user = Sentry::findUserById($id);
+		$user->activated = true;
+		$user->save();
+		return Redirect::route('usuarios');
 	}
 
 	public function getPerfil()
