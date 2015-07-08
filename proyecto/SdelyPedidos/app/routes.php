@@ -39,3 +39,6 @@ Route::filter('auth.admin', function()
 		return Redirect::route('login');
 	}
 });
+
+// ajax
+Route::post('/ubigeo', array('as' => 'ubigeo', 'uses' => 'UbigeoController@postDistrito'));

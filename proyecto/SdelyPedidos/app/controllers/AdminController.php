@@ -147,7 +147,7 @@ class AdminController extends BaseController {
 				'email'			=> trim(Input::get('email')),
 				'telefono'		=> trim(Input::get('telefono')),
 				'direccion'		=> trim(Input::get('direccion')),
-				'ubigeo'		=> Input::get('ubigeo'),
+				'distrito'		=> Input::get('distrito'),
 				'activated'		=> true,
 			));
 		}
@@ -197,7 +197,7 @@ class AdminController extends BaseController {
 				'email'			=> trim(Input::get('email')),
 				'telefono'		=> trim(Input::get('telefono')),
 				'direccion'		=> trim(Input::get('direccion')),
-				'ubigeo'		=> Input::get('ubigeo'),
+				'distrito'		=> Input::get('distrito'),
 				'activated'		=> true,
 			));
 		}

@@ -22,6 +22,7 @@
 		<script src="{{url()}}/js/chart.min.js"></script>
 		<script src="{{url()}}/js/bootstrap.js"></script>
 		<script src="{{url()}}/js/full-calendar/fullcalendar.min.js"></script>
+		<script src="{{url()}}/js/jquery.autocomplete.min.js"></script>
 		<script src="{{url()}}/js/base.js"></script>
 		<script src="{{url()}}/js/admin.js"></script>
 		<script>

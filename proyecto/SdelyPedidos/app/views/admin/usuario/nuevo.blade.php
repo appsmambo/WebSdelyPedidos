@@ -94,9 +94,9 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<label for="ubigeo" class="control-label">Ubigeo</label>
+							<label for="distrito" class="control-label">Distrito</label>
 							<div class="controls">
-								<input type="text" class="span6" id="ubigeo" name="ubigeo">
+								<input type="text" class="span6" id="distrito" name="distrito">
 							</div>
 						</div>
 						<div class="form-actions">

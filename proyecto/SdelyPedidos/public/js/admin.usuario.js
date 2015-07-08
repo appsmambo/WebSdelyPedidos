@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	$('#distrito').autocomplete({
+		type:'post',
+		minChars:3,
+		serviceUrl:urlBase + '/ubigeo',
+		onSelect: function (suggestion) {
+			alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+		}
+	});
 	$.validate({
 		form:'#usuarioNuevo',
 		onError : function() {
